@@ -66,43 +66,46 @@ Descripción breve del tipo base.
 **Otras operaciones**:
  
 - O1: La operación diferenciasalario calcula la diferencia entre el salario deseado y el salario actual del encuestado.
+- O2: La operación getNumeroElementos calcula el total de elementos que se encuentran en un contenedor.
+- O3: La operación añadirElemento añade un elemento nuevo al contenedor.
+- O4: La operación añadirColección añade una colección dada al contenedor.
+- O5: La operación eliminarElemento elimina un elemento del contenedor.
 
 #### Tipos auxiliares (no procede)
 
 Descripción de los tipos auxiliares que sean necesarios añadir al proyecto.
 
-### Factoría (no procede)
+### Factoría
 
 Descripción breve de la factoría.
 
-- _método 1_: Descripción del método 1.
--	_método 2_: Descripción del método 2.
+- Método 1: El primer método de la factoría genera un Objeto del tipo StackOverflow en el que figuran todos los valores del CSV parseados.
+-	Método 2: El segundo método de la factoría genera una Lista de objetos en la que figuran todos los valores del CSV parseados.
 
-### Tipo Contenedor (no procede)
+### Tipo Contenedor
 
 Descripción breve del tipo contenedor.
 
 **Propiedades**:
 
-- _propiedad1_, de tipo \<Tipo1\>, consultable. 
-- _propiedad2_, de tipo \<Tipo2\>, consultable y modificable. 
+- datos, de tipo List<StackOverflow>, consultable.
 - ...
-- 
+
 **Constructores**: 
 
-- C1: Descripción del constructor 1.
-- C2: Descripción del constructor 2.
+- C1: El primer constructor simplemente genera una lista preparada para almacenar datos.
+- C2: El segundo constructor genera una lista que contiene los datos de una colección dada.
 - ...
 
-**Restricciones**:
+**Restricciones**: (no procede)
  
 - R1: Descripción de la restricción 1.
 - R2: Descripción de la restricción 2.
 - ...
 - 
-**Criterio de igualdad**: Describir el criterio de igualdad
+**Criterio de igualdad**: El criterio de igualdad compara el hashCode de la propiedad datos y comprueba si coincide con el hashCode de los objetos que la conforman.
 
-**Criterio de ordenación**: Describir el criterio de ordenación (si lo hay).
+**Criterio de ordenación**: No lo hay.
 
 **Otras operaciones**:
  

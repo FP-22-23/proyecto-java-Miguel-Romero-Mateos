@@ -1,5 +1,7 @@
 package fp.stackoverflow;
 
+import fp.utiles.TiposCheckers;
+
 // EN EL PAQUETE fp.stackoverflow SE IMPLEMENTA LO NECESARIO PARA REALIZAR EL PROYECTO
 
 // ENTREGA 1: REQUISITOS:
@@ -9,6 +11,29 @@ package fp.stackoverflow;
 // 4- UN CRITERIO DE IGUALDAD ==> critIgual(...)
 // 5- UN CRITERIO DE ORDEN NATURAL ==> ???
 // 6- DOS RESTRICCIONES DE DATOS DE DIFERENTES TIPOS ==> posicionInvalida(...); nacionalidadInvalida(...)
+
+// ENTREGA 2: REQUISITOS:
+// 1- UNA FACTORÍA
+//	1.1- Método 1: recibe una cadena con el formato de las líneas del fichero CSV y devuelve un objeto del tipo.
+//	1.2- Método 2: recibe una cadena con el nombre y la ruta del fichero CSV y devuelve una lista de objetos del tipo.
+// 2- TIPO CONTENEDOR:
+// 	2.1- Requisito 1: mínimo una propiedad de tipo colección para almacenar los elementos del tipo base.
+//	2.2- Reguisito 2: tener al menos dos constructores:
+//		2.2.1- Constructor 1: recibe todas las propiedades básicas (exc. colección) y crea un tipo contenedor sin elementos en la colección.
+//		2.2.2- Constructor 2: lo mismo que Const. 1 recibiendo además una colección y creando un tipo contenedor con todos sus elementos.
+// 3- UN CRITERIO DE IGUALDAD
+// 4- UNA REPRESENTACIÓN COMO CADENA
+// 5- OPERACIONES AUXILIARES:
+// 	5.1- OP1: obtener el número de elementos.
+//	5.2- OP2: añadir un elemento.
+// 	5.3- OP3: añadir una colección de elementos.
+//	5.4- OP4: eliminar un elemento.
+// 6- IMPLEMENTACIÓN DE BUCLES:
+//	6.1- Opciones A1 / A2: bucle tipo existe / bucle tipo para todo.
+//	6.2- Opciones B1 / B2 / B3: contador / suma / media.
+//	6.3- Una selección con filtrado.
+//	6.4- Un método de agrupación que devuelva un Map con claves tipo base y valores colección de objetos tipo base.
+//	6.5- Un método de acumulación que devuelva un Map con claves tipo base y valores conteo o suma de objetos de un contenedor.
 
 public class StackOverflow {
 
@@ -70,11 +95,23 @@ public class StackOverflow {
 		}
 	}
 	
+	// Excepción de posición implementada con Checkers:
+	
+	//public void posicionInvalida2(Integer posicion) {
+		//TiposCheckers.check("La posición del usuario no puede ser negativa",posicion<0);
+	//}
+	
 	public void nacionalidadInvalida(String nacionalidad) {
 		if (nacionalidad == null) {
 			throw new IllegalArgumentException("La nacionalidad del usuario no puede ser nula");
 		}
 	}
+	
+	// Excepción de nacionalidad implementada con Checkers:
+	
+	//public void nacionalidadInvalida2(String nacionalidad) {
+		//TiposCheckers.check("La nacionalidad del usuario no puede ser nula", nacionalidad = null);
+	//}
 	
 	public Integer getPosicion() {
 		return posicion;
