@@ -7,6 +7,8 @@ public class TestStackOverflow {
 
 	public static void main(String[] args) {
 		
+		// TEST ENTREGA I:
+		
 		StackOverflow s1 = new StackOverflow(1, StatusProfesional.STUDENT, "Spain", StatusEmpleo.I_PREFER_NOT_TO_SAY, "Yes", null, null, null);
 		System.out.println(s1.toString()); // Prueba Constructor 1 y toString()
 		StackOverflow s2 = new StackOverflow(2, 1000.0, 3000.0);

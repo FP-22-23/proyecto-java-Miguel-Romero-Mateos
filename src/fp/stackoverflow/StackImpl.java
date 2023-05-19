@@ -5,6 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Stream;
+import java.util.Comparator;
+import java.util.SortedMap;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 public class StackImpl implements Stack {
 	
@@ -22,6 +27,16 @@ public class StackImpl implements Stack {
 	
 	public StackImpl(Collection<StackOverflow> coleccion) {
 		this.datos = new ArrayList<StackOverflow>(coleccion);
+	}
+	
+	public List<StackOverflow> getStack(){
+		return new ArrayList<StackOverflow>(datos);
+	}
+	
+	// Contenedor Stream con todas las propiedades básicas: (1C)
+		
+	public StackImpl(Stream<StackOverflow> datos) {
+		this.datos = datos.collect(Collectors.toList());
 	}
 	
 	// Número de elementos: (5.1)
@@ -145,5 +160,75 @@ public class StackImpl implements Stack {
 	public String toString() {
 		return "El número total de registros es:" + getNumeroElementos();
 	}
+	
+	// IMPLEMENTACIÓN STREAMS (BLOQUE I): (3C,4C)
+	
+	// Método tipo Existe Streams: (4.1C)
+	
+	public Boolean existeSalarioDeseadoStreams(Double salariodeseado) {
+		return datos.stream().anyMatch(x->x.getSalariodeseado().equals(salariodeseado));
+	}
+	
+	// Método tipo Media Streams: (4.2C)
+	
+	public Double mediaSalarioDeseadoStreams() {
+		return datos.stream().collect(Collectors.averagingDouble(StackOverflow::getSalariodeseado));
+	}
+	
+	// Método tipo Filtrado Streams: (4.3C)
+	
+	public List<StackOverflow> numeroPersonasMenosSalarioDeseadoStreams(Double salariodeseado) {
+		return datos.stream().filter(x->x.getSalariodeseado().equals(salariodeseado)).collect(Collectors.toList());
+	}
+	
+	// Método tipo Mínimo: (4.4C)
+	
+	public Double minimoSalarioDeseado(Double salariodeseado) {
+		return datos.stream().max(Comparator.comparing(datos->datos.getSalariodeseado())).map(StackOverflow::getSalariodeseado).orElse(null);
+	}
+	
+	// Método tipo Selección: (4.5C)
+	
+	public List<Double> personasEstudiosSalarioActualMayorMenor(Double salarioactual){
+		return datos.stream().filter(datos->datos.formateaEstudiosUniversitarios().equals(true)).sorted(Comparator.comparing(StackOverflow::getSalarioactual)).map(StackOverflow::getSalarioactual).collect(Collectors.toList());
+	}
+	
+	// IMPLEMENTACIÓN STREAMS (BLOQUE II): (5C)
+	
+	// Método tipo Número de elementos: (5.1C)
+	
+	public Long getNumeroElementosStreams() {
+		return datos.stream().count();
+	}
+	
+	// Método collectingAndThen: (5.2C)
+	
+	public Map<String,Double> getMediaSalarioDeseadoNacionalidad(String nacionalidad){
+		return datos.stream().filter(x->x.getNacionalidad().equals(nacionalidad)).collect(Collectors.groupingBy(StackOverflow::getNacionalidad,Collectors.collectingAndThen(Collectors.averagingDouble(x->x.getSalariodeseado()),Double::valueOf)));
+	}
+	
+	// Método Map con máximo: (5.3C)
+	
+	public Map<StatusProfesional,Double> getMaximoSalarioEstatusProfesional(){
+		return datos.stream().collect(Collectors.groupingBy(StackOverflow::getStatusprof,Collectors.collectingAndThen(Collectors.toList(),lista->parseamax(lista))));
+	}
+
+	private Double parseamax(List<StackOverflow> lista) { // Esta es una función de parseo auxiliar al método anterior
+		return lista.stream().max(Comparator.comparing(StackOverflow::getSalarioactual)).get().getSalarioactual();
+	}
+	
+	// Método SortedMap con atributos y listas con n peores elementos: (5.4C)
+	
+	public SortedMap<StatusProfesional, List<Object>> getNSalariosDeseadosBajosEstatusProfesional(Integer n){
+		return datos.stream().collect(Collectors.groupingBy(StackOverflow::getStatusprof,TreeMap::new,Collectors.mapping(x->x.getSalariodeseado(),Collectors.toList())));
+	}
+	
+	// Método Clave con Valor mínimo: (5.5C)
+	
+	public Integer getPosicionSalarioDeseadoMasBajo() {
+		Map<Integer,Double> m = datos.stream().collect(Collectors.toMap(StackOverflow::getPosicion, StackOverflow::getSalariodeseado, (sal1,sal2)->Math.min(sal1,sal2)));
+		return m.entrySet().stream().min(Map.Entry.comparingByValue()).map(Map.Entry::getKey).get();
+	}
+	
 }
 

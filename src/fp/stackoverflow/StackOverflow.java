@@ -35,6 +35,23 @@ import fp.utiles.TiposCheckers;
 //	6.4- Un método de agrupación que devuelva un Map con claves tipo base y valores colección de objetos tipo base.
 //	6.5- Un método de acumulación que devuelva un Map con claves tipo base y valores conteo o suma de objetos de un contenedor.
 
+// ENTREGA 3: REQUISITOS:
+// 1C- Añadir al tipo contenedor un tercer constructor con todas las propiedades básicas (excepto la colección) y un stream de objetos del tipo base, que cree un objeto del tipo contenedor con todos los elementos del stream.
+// 2C- Añadir a la factoría un método que recibe como parámetro una cadena que contiene el nombre y ruta del fichero CSV, y devuelve un objeto del tipo contenedor creado mediante el constructor anterior.
+// 3C- Añadir al tipo contenedor los siguientes métodos, todos ellos implementados mediante streams.
+// 4C- Bloque I: Implementar, documentar y probar CINCO métodos que trabajen sobre el dataset y respondan a preguntas interesantes.
+//  4.1C- A escoger uno de los dos siguientes: existe / para todo (el mismo implementado en la entrega 2, pero con streams).
+//	4.2C- A escoger uno de los tres siguientes: contador/suma/media (el mismo implementado en la entrega 2, pero con streams).
+//	4.3C- Una selección con filtrado (la misma implementada en la entrega 2, pero con streams).
+//	4.4C- Un máximo/mínimo con filtrado.
+//	4.5C- Una selección, con filtrado y ordenación.
+// 5C- Bloque II: Implementar, documentar y probar CINCO métodos que trabajen sobre el dataset y respondan a preguntas interesantes.
+// 	5.1C- Uno de los métodos (4) o (5) implementados en la entrega 2, pero con streams.
+//	5.2C- Un método en cuya implementación se use, o bien el Collector collectingAndThen, o bien el Collector mapping.
+//	5.3C- Un método que devuelva un Map en el que las claves sean un atributo o una función sobre un atributo, y los valores son máximos/mínimos de los elementos que tienen ese valor.
+//	5.4C- Un método que devuelva un SortedMap en el que las claves sean un atributo o una función sobre un atributo, y los valores sean listas con los n mejores o peores elementos que comparten el valor de ese atributo (o función sobre el atributo).
+//	5.5C- Un método que calcule un Map y devuelva la clave con el valor asociado (mayor o menor) de todo el Map.
+
 public class StackOverflow {
 
 	private Integer posicion; // PRIMER VALOR DEL CSV
@@ -47,9 +64,9 @@ public class StackOverflow {
 	private String volumenempresa; // DÉCIMO VALOR DEL CSV
 	
 	public Boolean formateaEstudiosUniversitarios() {
-		Boolean res = true;
+		Boolean res = false;
 		if (getEstudiosuniversitarios() == "Yes") {
-			res = false;
+			res = true;
 		}
 		return res;
 	}
